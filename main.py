@@ -3,6 +3,8 @@ from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import *
 from gui_design import *
 from PyQt5.QtGui import *
+import cv2
+import imutils
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -43,6 +45,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.serial.readyRead.connect(self.read_data)
 
         self.read_ports()
+        self.start_video()
 
     def mover_menu(self):
         if True:
@@ -122,6 +125,36 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         rx = self.serial.readLine()
 
         datos = str(rx, 'utf-8').strip()
+
+    def send_data(self, data):
+        data = data + "\n"
+        print(data)
+        if self.serial.isOpen():
+            self.serial.write(data.encode())
+
+    def start_video(self):
+        self.Work = Work()
+        self.Work.start()
+        self.Work.Imageupd.connect(self.Imageupd_slot)
+
+    def Imageupd_slot(self, Image):
+        self.label_videocapture.setPixmap(QPixmap.fromImage(Image))
+
+class Work(QThread):
+    Imageupd = pyqtSignal(QImage)
+
+    def run(self):
+        self.hilo_corriendo = True
+        cap = cv2.VideoCapture(0)
+        while self.hilo_corriendo:
+            ret, frame = cap.read()
+            if ret:
+                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                flip = cv2.flip(Image, 1)
+                frameu = imutils.resize(flip, width=640, height=480)
+                pic = QImage(frameu.data, frameu.shape[1], frameu.shape[0], QImage.Format_RGB888)
+                # pic = convertir_QT.scaled(320, 240, Qt.KeepAspectRatio)
+                self.Imageupd.emit(pic)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
