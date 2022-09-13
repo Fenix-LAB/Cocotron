@@ -33,6 +33,17 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # Movimiento de la ventana
         self.frame_superior.mouseMoveEvent = self.mover_ventana
 
+        # Control connect
+        self.serial = QSerialPort()
+        self.btn_actualizar.clicked.connect(self.read_ports)
+        self.btn_conectar.clicked.connect(self.serial_conect)
+        self.btn_desconectar.clicked.connect(lambda: self.serial.close())
+
+        # Asociacion de metodos
+        self.serial.readyRead.connect(self.read_data)
+
+        self.read_ports()
+
     def mover_menu(self):
         if True:
             width = self.frame_menu.width()
@@ -84,6 +95,33 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             self.showNormal()
             self.btn_normal.hide()
             self.btn_max.show()
+
+    def read_ports(self):
+        self.baudrates = ['1200', '2400', '4800', '9600', '19200', '34800', '115200']
+        portList = []
+        ports = QSerialPortInfo().availablePorts()
+        for i in ports:
+            portList.append(i.portName())
+
+        self.comboBox_puerto.clear()
+        self.comboBox_velocidad.clear()
+        self.comboBox_puerto.addItems(portList)
+        self.comboBox_velocidad.addItems(self.baudrates)
+        self.comboBox_velocidad.setCurrentText("9600")
+
+    def serial_conect(self):
+        self.serial.waitForReadyRead(100)
+        self.port = self.comboBox_puerto.currentText()
+        self.baud = self.comboBox_velocidad.currentText()
+        self.serial.setBaudRate(int(self.baud))
+        self.serial.setPortName(self.port)
+        self.serial.open(QIODevice.ReadWrite)
+
+    def read_data(self):
+        if not self.serial.canReadLine(): return
+        rx = self.serial.readLine()
+
+        datos = str(rx, 'utf-8').strip()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
