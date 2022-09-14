@@ -4,7 +4,10 @@ from PyQt5.QtCore import *
 from gui_design import *
 from PyQt5.QtGui import *
 import cv2
+import mediapipe as mp
 import imutils
+from scipy.spatial import distance
+
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -19,6 +22,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_cerrar.clicked.connect(self.control_btn_cerrar)
         self.btn_normal.clicked.connect(self.control_btn_normal)
         self.btn_max.clicked.connect(self.control_btn_maximizar)
+        self.btn_iniciar.clicked.connect(self.control_btn_iniciar)
+        self.btn_detener.clicked.connect(self.control_btn_detener)
         self.btn_menu.clicked.connect(self.mover_menu)
 
         # Se elimina la barra de titulo por default
@@ -46,6 +51,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.read_ports()
         self.start_video()
+        self.data_control = False
 
     def mover_menu(self):
         if True:
@@ -64,7 +70,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def control_btn_cerrar(self):
         self.close()
-        #cap.release()
+        # cap.release()
         self.label.clear()
 
     def control_btn_normal(self):
@@ -128,9 +134,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def send_data(self, data):
         data = data + "\n"
-        print(data)
+        #print(data)
         if self.serial.isOpen():
             self.serial.write(data.encode())
+            print("enviado")
+
+    def control_btn_iniciar(self):
+        self.Work.signalData.connect(self.detection_data)
+
+    def control_btn_detener(self):
+        self.data_control = False
 
     def start_video(self):
         self.Work = Work()
@@ -140,21 +153,102 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def Imageupd_slot(self, Image):
         self.label_videocapture.setPixmap(QPixmap.fromImage(Image))
 
+    def detection_data(self, data):
+        self.data_control = True
+        if self.data_control == True:
+            self.send_data(str(data))
+            #print(data)
+
 class Work(QThread):
     Imageupd = pyqtSignal(QImage)
+    signalData = pyqtSignal(int)
+
+    def __init__(self, parent=None, index=0):
+        super(Work, self).__init__(parent)
+        self.index = index
+        self.mp_drawing = mp.solutions.drawing_utils
+        self.mp_holistic = mp.solutions.holistic
+        self.mp_hands = mp.solutions.hands
+        self.mp_pose = mp.solutions.pose
 
     def run(self):
         self.hilo_corriendo = True
         cap = cv2.VideoCapture(0)
-        while self.hilo_corriendo:
-            ret, frame = cap.read()
-            if ret:
-                Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                flip = cv2.flip(Image, 1)
-                frameu = imutils.resize(flip, width=640, height=480)
-                pic = QImage(frameu.data, frameu.shape[1], frameu.shape[0], QImage.Format_RGB888)
-                # pic = convertir_QT.scaled(320, 240, Qt.KeepAspectRatio)
-                self.Imageupd.emit(pic)
+        with self.mp_holistic.Holistic(
+            static_image_mode=False,
+            model_complexity=1,
+            enable_segmentation=False,
+        ) as holistic:
+            while self.hilo_corriendo:
+                ret, frame = cap.read()
+                if ret:
+                    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    results = holistic.process(frame_rgb)
+                    # Mano izquieda
+                    self.mp_drawing.draw_landmarks(
+                        frame, results.left_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
+                        self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
+                        self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
+
+                    # Mano derecha
+                    self.mp_drawing.draw_landmarks(
+                        frame, results.right_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
+                        self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
+                        self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
+
+                    # Postura
+                    self.mp_drawing.draw_landmarks(
+                        frame, results.pose_landmarks, self.mp_holistic.POSE_CONNECTIONS,
+                        self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
+                        self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
+
+                    Image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    flip = cv2.flip(Image, 1)
+                    frameu = imutils.resize(flip, width=640, height=480)
+                    pic = QImage(frameu.data, frameu.shape[1], frameu.shape[0], QImage.Format_RGB888)
+                    # pic = convertir_QT.scaled(320, 240, Qt.KeepAspectRatio)
+                    self.Imageupd.emit(pic)
+                    lmList = []
+                    h, w, c = frame.shape
+                    if results.pose_landmarks:
+                        for id, lm in enumerate(results.pose_landmarks.landmark):
+                            # print(id, lm)
+                            cx, cy, cz = int(lm.x * w), int(lm.y * h), int(lm.z * c)
+                            lmList.append([id, cx, cy, cz])
+
+                        if lmList:
+                            head = self.headDet(lmList)
+
+                            self.signalData.emit(head)
+
+    def headDet(self, lmList):
+        # Giro Cabeza
+        PCx = lmList[0][1]
+        PCy = lmList[0][2]
+        PCIx = lmList[7][1]
+        PCIy = lmList[7][2]
+        PCDx = lmList[8][1]
+        PCDy = lmList[8][2]
+        # Distancia a lado izquierdo
+        a_LID = (PCx, PCy)
+        b_LI = (PCIx, PCIy)
+        CDLI = int(distance.euclidean(a_LID, b_LI))
+        # print(CDLI)
+        # Distancia lado derecho
+        # a_LD = (PCx, PCy)
+        b_LD = (PCDx, PCDy)
+        CDLD = int(distance.euclidean(a_LID, b_LD))
+        # print("LD", CDLD,"LI", CDLI)
+        direct = self.headDirection(CDLI, CDLD)
+        return direct
+
+    def headDirection(self, LI, LD):
+        if LI > LD + 20:
+            return 1 #Lado derecho
+        elif LD > LI + 20:
+            return 2 #Lado izquierdo
+        else:
+            return 0 #Centro
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
