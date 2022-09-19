@@ -1,6 +1,7 @@
 # El Charrito Electronico
 
 Aqui se presenta el repositorio del proyecto del animatronico para el Cocotron 2022, realizado por el Laboratorio de Innovacion BUAP-Intel 
+____
 
 ## Overview
 Se desarrollo un aplicacion de escritorio en Python, que usa la camara para estimar la pose de la persona que esta siendo grabada, 
@@ -28,7 +29,7 @@ _El Charro ya se había olvidado de aquel trato que lo maldijo. Por eso, cuando 
 
 _El terror invadió a nuestro protagonista hasta el último rincón de sus entrañas. Recordó su deuda y, por cobardía, comenzó a ocultarse. Mandó al personal de su hacienda a poner cruces por toda su propiedad y a construir una pequeña capilla._
 
-
+![charro2](https://user-images.githubusercontent.com/85959332/191129567-df92f352-24f9-4221-8ecc-106071aa0f96.png)
 
 _No obstante, el recuerdo de la deuda pendiente no lo dejaba dormir ni disfrutar de los pocos meses que le quedaban de vida. Así que, en un arranque de miedo tomó a su mejor caballo junto con una bolsa que contenía unas cuantas monedas de oro que no se había gastado. Emprendió el viaje durante la noche, para que nadie lo viera huir._
 
