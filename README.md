@@ -21,14 +21,20 @@ import mediapipe as mp
 import imutils
 from scipy.spatial import distance
 ```
-### PyQt5
+#### PyQt5
 Este modulo es una clase que nos permite crar interfaces graficas, tiene una coleccion de metodos y eventos para la realizacion de la aplicacion.
 Este modulo tambien incluye submodulos muy importantes, como el QtSerialPort para la comunicacion serial con el microcontrolador, o QThread para usar el multihilo del procesador.
 
-### MediaPipe
+#### MediaPipe
 MediaPipe ofrece soluciones de Machine Learning personalizables y multiplataforma para medios en vivo y de transmisión.
 Es el modulo encargado de estimar la pose de las personas.
 
-### OpenCV
+#### OpenCV
 Modulo muy popular de Computer Vision que permite usar algoritmos de Machine Learning en videos o imagenes. 
 Fue utilizado para procesar el video.
+
+## Evidencias
+Trabajando en el Laboratorio de Innovacion de Intel, ubicado en el Edificio EMA7 salon 205.
+![Evidencia1](https://user-images.githubusercontent.com/85959332/191079474-2e9e440d-6382-4ff6-ba26-5d29fe0b017b.jpg)
+Diseño de la interfaz grafica en Qt Designer.
+
