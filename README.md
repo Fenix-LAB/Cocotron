@@ -3,6 +3,15 @@
 Aqui se presenta el repositorio del proyecto del animatronico para el Cocotron 2022, realizado por el Laboratorio de Innovacion BUAP-Intel 
 ____
 
+# Contenido
+
+[Overview](#overview)  
+[Leyenda "El Charro Negro"](#leyenda-el-charro-negro)  
+[Desarrollo de la aplicacion](#desarrollo-de-la-aplicacion)  
+[Evidencias](#evidencias)  
+<a name="headers"/>
+____
+
 ## Overview
 Se desarrollo un aplicacion de escritorio en Python, que usa la camara para estimar la pose de la persona que esta siendo grabada, 
 los datos de la estimacion son procesados y enviados a un microcontrolador para mover los servomotores del animatronico, de esta forma se logra que el robot 
@@ -46,7 +55,7 @@ _Desde entonces, aquel hombre fue condenado a sufrir incontables tormentos en el
 ## Desarrollo de la aplicacion
 La aplicacion fue desarrollada en Python con los siguientes modulos:
 
-```sh
+```python
 import numpy
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import *
