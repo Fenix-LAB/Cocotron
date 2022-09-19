@@ -8,7 +8,6 @@ import mediapipe as mp
 import imutils
 from scipy.spatial import distance
 
-
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -137,7 +136,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #print(data)
         if self.serial.isOpen():
             self.serial.write(data.encode())
-            print("enviado")
+            #print("enviado")
 
     def control_btn_iniciar(self):
         self.Work.signalData.connect(self.detection_data)
