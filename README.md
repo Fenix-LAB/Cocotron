@@ -37,4 +37,4 @@ Fue utilizado para procesar el video.
 Trabajando en el Laboratorio de Innovacion de Intel, ubicado en el Edificio EMA7 salon 205.
 ![Evidencia1](https://user-images.githubusercontent.com/85959332/191079474-2e9e440d-6382-4ff6-ba26-5d29fe0b017b.jpg)
 Diseño de la interfaz grafica en Qt Designer.
-
+![Qt Designer 19_09_2022 12_50_47 p  m](https://user-images.githubusercontent.com/85959332/191081543-f181fedd-51fe-49eb-ba49-695e9d3d2f43.png)
