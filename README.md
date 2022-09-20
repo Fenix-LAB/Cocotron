@@ -18,6 +18,14 @@ los datos de la estimacion son procesados y enviados a un microcontrolador para 
 imite los movimientos de una persona.
 ____
      
+## Miembros del Equipo
+
+Christian Rodriguez Hernandez - Mecatronica - 9° Semestre
+
+Marco - Mecatronica - 9° Semestre
+
+Rene - Electronica - 9
+
 ## Leyenda "El Charro Negro"
 
 ![charro](https://user-images.githubusercontent.com/85959332/191128216-8168bf73-f4b9-4af3-9dc5-f9ff2873f77d.png)
