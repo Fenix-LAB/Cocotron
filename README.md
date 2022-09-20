@@ -6,6 +6,7 @@ ____
 # Contenido
 
 [Overview](#overview)  
+[Miembros del Equipo](#miembros-del-equipo)  
 [Leyenda "El Charro Negro"](#leyenda-el-charro-negro)  
 [Desarrollo de la aplicacion](#desarrollo-de-la-aplicacion)  
 [Evidencias](#evidencias)  
@@ -19,12 +20,15 @@ imite los movimientos de una persona.
 ____
      
 ## Miembros del Equipo
+Miembos del Laboratorio de Innovacion Intel-BUAP
 
-Christian Rodriguez Hernandez - Mecatronica - 9° Semestre
-
-Marco - Mecatronica - 9° Semestre
-
-Rene - Electronica - 9
+|           Nombre              | Carrera         |  Semestre    |
+|------------------------------ | ----------------|---------------
+|Christian Rodriguez Hernandez  | Mecatronica     |     9°       |
+|Marco  | Mecatronica     |     9°       |
+|Rene  | Electronica     |     9°       |
+|Adiel  | Electronica     |     9°       |
+____
 
 ## Leyenda "El Charro Negro"
 
@@ -59,6 +63,9 @@ _El Charro no tuvo tiempo de responder. Cuando se dio cuenta, su caballo, encabr
 _—Veo que tu bestia te es fiel, por eso ha de ser maldita igual que tú y condenada a acompañarte a tu viaje hacia el infierno. Aunque, de vez en cuando, quiero que hagas algo por mí, cobrarle a mis deudores. Si haces bien tu trabajo, dejaré que el hombre que acepte esa bolsa con monedas de oro que traes, tome tu lugar._
 
 _Desde entonces, aquel hombre fue condenado a sufrir incontables tormentos en el infierno y a salir de ahí solo para cobrar a quienes tienen deudas pendientes con Lucifer. Esto con la esperanza de que una noche, algún viajero, traicionado por su avaricia, tomé su lugar. Solo así, el Charro Negro y su caballo podrán descansar en paz._
+
+Lyenda tomada de: Cisneros, S. (2022, January 28). La leyenda del Charro Negro. México Desconocido. Retrieved September 20, 2022, de [La Leyenda del Charrro Negro](https://www.mexicodesconocido.com.mx/la-leyenda-del-charro-negro.html)
+____
 
 ## Desarrollo de la aplicacion
 La aplicacion fue desarrollada en Python con los siguientes modulos:
