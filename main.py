@@ -133,7 +133,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def send_data(self, data):
         data = data + "\n"
-        #print(data)
+        #data = data
+        print(data)
         if self.serial.isOpen():
             self.serial.write(data.encode())
             #print("enviado")
@@ -173,6 +174,7 @@ class Work(QThread):
     def run(self):
         self.hilo_corriendo = True
         cap = cv2.VideoCapture(0)
+        s=0
         with self.mp_holistic.Holistic(
             static_image_mode=False,
             model_complexity=1,
@@ -180,6 +182,7 @@ class Work(QThread):
         ) as holistic:
             while self.hilo_corriendo:
                 ret, frame = cap.read()
+                s += 1
                 if ret:
                     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                     results = holistic.process(frame_rgb)
@@ -217,8 +220,9 @@ class Work(QThread):
 
                         if lmList:
                             head = self.headDet(lmList)
-
-                            self.signalData.emit(head)
+                            if s == 20:
+                                self.signalData.emit(head)
+                                s = 0
 
     def headDet(self, lmList):
         # Giro Cabeza

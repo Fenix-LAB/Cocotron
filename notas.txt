@@ -1,0 +1,55 @@
+#include <Servo.h>
+
+#define ledPWM1 15
+#define ledPWM2 2
+//#define led1 4
+#define led2 16
+#define graph 13
+int datoNum;
+
+Servo servoMotor;
+
+float lectura, signal1, voltaje1;
+int coma1, n, led;
+String datos, numero, indice;
+
+unsigned long tiempo1, tiempo2;
+unsigned long t1=0, t2=200;
+
+void setup() {
+  Serial.begin(9600);
+  servoMotor.attach(5);
+  pinMode(ledPWM1, OUTPUT);
+  //pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(graph, INPUT);
+}
+
+void loop() {
+  if(Serial.available() > 0){
+      datos = Serial.readString();
+      //coma1 = datos.indexOf(',');
+
+      //indice = datos.substring(0, coma1);
+      //numero = datos.substring(coma1+1);
+
+      //led = numero.toInt();
+      //n = indice.toInt();
+
+      datoNum = datos.toInt();
+
+      if(datoNum==0){
+        servoMotor.write(90);
+        //Serial.println(90);
+      }
+      if(datoNum==1){
+        servoMotor.write(0);
+        //Serial.println(0);
+      }
+      if(datoNum==2){
+        servoMotor.write(180);
+        //Serial.println(180);
+      }
+  }
+
+}
