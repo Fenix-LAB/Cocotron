@@ -3,7 +3,7 @@
 Aqui se presenta el repositorio del proyecto del animatronico para el Cocotron 2022, realizado por el Laboratorio de Innovacion BUAP-Intel 
 ____
 
-# Contenido
+## Contenido
 
 [Overview](#overview)  
 [Miembros del Equipo](#miembros-del-equipo)  
