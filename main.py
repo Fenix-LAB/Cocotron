@@ -1,4 +1,3 @@
-import numpy
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import *
 from gui_design import *
@@ -6,6 +5,7 @@ from PyQt5.QtGui import *
 import cv2
 import mediapipe as mp
 import imutils
+import math
 from scipy.spatial import distance
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -219,12 +219,19 @@ class Work(QThread):
                             lmList.append([id, cx, cy, cz])
 
                         if lmList:
-                            head = self.headDet(lmList)
+                            head = int(self.cabezaDet(lmList))
+                            brazoL = int(self.brazoLDet(lmList))
+                            brazoD = int(self.brazoDDet(lmList))
+                            bicepL = int(self.bicepIDet(lmList))
+                            bicepD = int(self.bicepDDet(lmList))
+
+                            data = '1,' + str(head) + '2,' + str(brazoL) + '3,' + str(brazoD) + '4,' + str(bicepL) + '5,' + str(bicepD)
+                            print(data)
                             if s == 20:
                                 self.signalData.emit(head)
                                 s = 0
 
-    def headDet(self, lmList):
+    def cabezaDet(self, lmList):
         # Giro Cabeza
         PCx = lmList[0][1]
         PCy = lmList[0][2]
@@ -244,6 +251,53 @@ class Work(QThread):
         # print("LD", CDLD,"LI", CDLI)
         direct = self.headDirection(CDLI, CDLD)
         return direct
+
+    def brazoLDet(self, lmList):
+        BIx1 = lmList[11][1]
+        BIy1 = lmList[11][2]
+        BIx2 = lmList[13][1]
+        BIy2 = lmList[13][2]
+        BIx3 = lmList[15][1]
+        BIy3 = lmList[15][2]
+        angle = self.angleVectors(BIx1, BIy1, BIx2, BIy2, BIx3, BIy3)
+        return angle
+
+    def brazoDDet(self, lmList):
+        BDx1 = lmList[16][1]
+        BDy1 = lmList[16][2]
+        BDx2 = lmList[14][1]
+        BDy2 = lmList[14][2]
+        BDx3 = lmList[12][1]
+        BDy3 = lmList[12][2]
+        angle = self.angleVectors(BDx1, BDy1, BDx2, BDy2, BDx3, BDy3)
+        return angle
+
+    def bicepIDet(self, lmList):
+        BIx1b = lmList[13][1]
+        BIy1b = lmList[13][2]
+        BIx2b = lmList[11][1]
+        BIy2b = lmList[11][2]
+        BIx3b = lmList[23][1]
+        BIy3b = lmList[23][2]
+        angle = self.angleVectors(BIx1b, BIy1b, BIx2b, BIy2b, BIx3b, BIy3b)
+        return  angle
+
+    def bicepDDet(self, lmList):
+        BDx1b = lmList[24][1]
+        BDy1b = lmList[24][2]
+        BDx2b = lmList[12][1]
+        BDy2b = lmList[12][2]
+        BDx3b = lmList[14][1]
+        BDy3b = lmList[14][2]
+        angle = self.angleVectors(BDx1b, BDy1b, BDx2b, BDy2b, BDx3b, BDy3b)
+        return angle
+
+    def angleVectors(self, x1, y1, x2, y2, x3, y3):
+        # Calculate the Angle
+        angle = math.degrees(math.atan2(y3 - y2, x3 - x2) - math.atan2(y1 - y2, x1 - x2))
+        if angle < 0:
+            angle += 360
+        return angle
 
     def headDirection(self, LI, LD):
         if LI > LD + 20:
