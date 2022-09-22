@@ -225,9 +225,9 @@ class Work(QThread):
                             bicepL = int(self.bicepIDet(lmList))
                             bicepD = int(self.bicepDDet(lmList))
 
-                            data = '1,' + str(head) + '2,' + str(brazoL) + '3,' + str(brazoD) + '4,' + str(bicepL) + '5,' + str(bicepD)
-                            print(data)
+                            data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' + str(bicepL) + 'e' + str(bicepD)
                             if s == 20:
+                                print(data)
                                 self.signalData.emit(head)
                                 s = 0
 
@@ -301,11 +301,11 @@ class Work(QThread):
 
     def headDirection(self, LI, LD):
         if LI > LD + 20:
-            return 1 #Lado derecho
+            return 180 #Lado derecho
         elif LD > LI + 20:
-            return 2 #Lado izquierdo
+            return 0 #Lado izquierdo
         else:
-            return 0 #Centro
+            return 90 #Centro
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

@@ -1,34 +1,43 @@
 #include <Servo.h>
 
-#define led 13
-int datoNum;
-String datos;
+int letraB, letraC, letraD, letraE, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD;
+String datos, servoCabeza, servoBrazoL, servoBrazoD, servoBicepL, servoBicepD;
 
-Servo servoMotor;
+Servo servoMotorCabeza, servoMotorBrazoL, servoMotorBrazoD, servoMotorBicepL, servoMotorBicepD;
 
 void setup() {
   Serial.begin(9600);
-  servoMotor.attach(5);
-  pinMode(led, OUTPUT);
+  servoMotorCabeza.attach(3);
+  servoMotorBrazoL.attach(5);
+  servoMotorBrazoD.attach(6);
+  servoMotorBicepL.attach(9);
+  servoMotorBicepD.attach(11);
 }
 void loop() {
   if(Serial.available() > 0){
     datos = Serial.readString();
-  datoNum = datos.toInt();
-  if(datoNum==0){
-        servoMotor.write(90);
-        //Serial.println(90);
-        //digitalWrite(led, HIGH);
-      }
-  if(datoNum==1){
-        servoMotor.write(0);
-        //Serial.println(0);
-      }
-  if(datoNum==2){
-        servoMotor.write(180);
-        //Serial.println(180);
-      }
-  }
-  delay(200);
+    letraB = datos.indexOf('b');
+    letraC = datos.indexOf('c');
+    letraD = datos.indexOf('d');
+    letraE = datos.indexOf('e');
+    finalStr = datos.length();
+
+    servoCabeza = datos.substring(1, letraB - 1);
+    servoBrazoL = datos.substring(letraB + 1, letraC - 1);
+    servoBrazoD = datos.substring(letraC + 1, letraD - 1);
+    servoBicepL = datos.substring(letraD + 1, letraE - 1);
+    servoBicepD = datos.substring(letraE + 1, finalStr);
   
+    NservoCabeza = servoCabeza.toInt();
+    NservoBrazoL = servoBrazoL.toInt();
+    NservoBrazoD = servoBrazoD.toInt();
+    NservoBicepL = servoBicepL.toInt();
+    NservoBicepD = servoBicepD.toInt();
+
+    servoMotorCabeza.write(NservoCabeza);
+    servoMotorBrazoL.write(NservoBrazoL);
+    servoMotorBrazoD.write(NservoBrazoD);
+    servoMotorBicepL.write(NservoBicepL);
+    servoMotorBicepD.write(NservoBicepD);
+  }
 }
