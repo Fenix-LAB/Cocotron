@@ -26,7 +26,7 @@ Miembos del Laboratorio de Innovacion Intel-BUAP
 |------------------------------ | ----------------|---------------
 |Christian Rodriguez Hernandez  | Mecatronica     |     9°       |
 |Marco Antonio Ruiz Guagnelli | Mecatronica     |     9°       |
-|Rene Guzman Dimayuga  | Electronica     |     9°       |
+|Maria Fernanda Hernandez Ramos  | Electronica     |     9°       |
 |Adiel Sanchez Santos  | Electronica     |     9°       |
 ____
 
