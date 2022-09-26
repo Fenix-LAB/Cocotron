@@ -165,7 +165,7 @@ La unica libreria que se agrego fue la sigiuente:
 El codigo revisa si existen datos en la comunicacion serial y cuando llegan los datos son de la siguiente forma:
 
 ```c++
-'a' + "Angulo de la cabeza + 'b' + "Brazo izquierdo" + 'c' + "Brazo derecho" + 'd' + "Bicep izquierdo" + 'e' + "Bicep derecho"
+'a' + "Angulo de la cabeza" + 'b' + "Brazo izquierdo" + 'c' + "Brazo derecho" + 'd' + "Bicep izquierdo" + 'e' + "Bicep derecho"
 ```
 
 Por ejemplo:
