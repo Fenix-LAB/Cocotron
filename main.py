@@ -134,7 +134,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def send_data(self, data):
         data = data + "\n"
         #data = data
-        print(data)
+        #print(data)
         if self.serial.isOpen():
             self.serial.write(data.encode())
             #print("enviado")
@@ -161,7 +161,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
 class Work(QThread):
     Imageupd = pyqtSignal(QImage)
-    signalData = pyqtSignal(int)
+    signalData = pyqtSignal(str)
 
     def __init__(self, parent=None, index=0):
         super(Work, self).__init__(parent)
@@ -215,8 +215,8 @@ class Work(QThread):
                     if results.pose_landmarks:
                         for id, lm in enumerate(results.pose_landmarks.landmark):
                             # print(id, lm)
-                            cx, cy, cz = int(lm.x * w), int(lm.y * h), int(lm.z * c)
-                            lmList.append([id, cx, cy, cz])
+                            cx, cy = int(lm.x * w), int(lm.y * h)
+                            lmList.append([id, cx, cy])
 
                         if lmList:
                             head = int(self.cabezaDet(lmList))
@@ -227,8 +227,8 @@ class Work(QThread):
 
                             data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' + str(bicepL) + 'e' + str(bicepD)
                             if s == 20:
-                                print(data)
-                                self.signalData.emit(head)
+                                #print(data)
+                                self.signalData.emit(data)
                                 s = 0
 
     def cabezaDet(self, lmList):
@@ -301,9 +301,9 @@ class Work(QThread):
 
     def headDirection(self, LI, LD):
         if LI > LD + 20:
-            return 180 #Lado derecho
+            return 0 #Lado derecho
         elif LD > LI + 20:
-            return 0 #Lado izquierdo
+            return 180 #Lado izquierdo
         else:
             return 90 #Centro
 

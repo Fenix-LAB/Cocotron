@@ -22,10 +22,10 @@ void loop() {
     letraE = datos.indexOf('e');
     finalStr = datos.length();
 
-    servoCabeza = datos.substring(1, letraB - 1);
-    servoBrazoL = datos.substring(letraB + 1, letraC - 1);
-    servoBrazoD = datos.substring(letraC + 1, letraD - 1);
-    servoBicepL = datos.substring(letraD + 1, letraE - 1);
+    servoCabeza = datos.substring(1, letraB);
+    servoBrazoL = datos.substring(letraB + 1, letraC);
+    servoBrazoD = datos.substring(letraC + 1, letraD);
+    servoBicepL = datos.substring(letraD + 1, letraE);
     servoBicepD = datos.substring(letraE + 1, finalStr);
   
     NservoCabeza = servoCabeza.toInt();
@@ -33,6 +33,13 @@ void loop() {
     NservoBrazoD = servoBrazoD.toInt();
     NservoBicepL = servoBicepL.toInt();
     NservoBicepD = servoBicepD.toInt();
+
+    //Serial.println(letraB);
+    Serial.println(NservoCabeza);
+    Serial.println(NservoBrazoL);
+    Serial.println(NservoBrazoD);
+    Serial.println(NservoBicepL);
+    Serial.println(NservoBicepD);
 
     servoMotorCabeza.write(NservoCabeza);
     servoMotorBrazoL.write(NservoBrazoL);
