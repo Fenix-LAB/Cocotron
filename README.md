@@ -9,6 +9,7 @@ ____
 [Miembros del Equipo](#miembros-del-equipo)  
 [Leyenda "El Charro Negro"](#leyenda-el-charro-negro)  
 [Desarrollo de la aplicacion](#desarrollo-de-la-aplicacion)  
+[Codigo en Arduino](#codigo-en-arduino)
 [Evidencias](#evidencias)  
 <a name="headers"/>
 ____
@@ -91,6 +92,104 @@ Es el modulo encargado de estimar la pose de las personas.
 #### OpenCV
 Modulo muy popular de Computer Vision que permite usar algoritmos de Machine Learning en videos o imagenes. 
 Fue utilizado para procesar el video.
+
+### Clases de la aplicacion
+#### Clase MyApp()
+Para la clase de ventana se crearon los siguientes metodos:
+```python
+mover_menu(self): 
+control_btn_cerrar(self):
+control_btn_normal(self):
+control_btn_maximizar(self):
+resizeEvent(self, event):
+mousePressEvent(self, event):
+mover_ventana(self, event):
+read_ports(self):
+serial_conect(self):
+read_data(self):
+send_data(self, data):
+control_btn_iniciar(self):
+control_btn_detener(self):
+start_video(self):
+Imageupd_slot(self, Image):
+detection_data(self, data):
+```
+
+#### Clase Work()
+En la clase de Work se hizo heredandola de QThread para usar el multinucleo del procesador
+```python
+class Work(QThread):
+```
+
+En esta clase se definen dos variables qus son señales que despues seran usadas por la clase de la ventana
+```python
+Imageupd = pyqtSignal(QImage)     # Variable de tipo señal para guardar la imagen mostrada
+signalData = pyqtSignal(str)      # Variable de tipo señal para gairdar lso datos que se enviaran
+```
+
+En el metodo de Run se realiza el procesado del video, la estimacion de pose y el procesado de los angulos de las partes del cuerpo
+
+- Para el procesado del video se usan las funciones de CV2 como:
+```python
+VideoCapture()
+read()
+cvtColor()
+flip() 
+```
+
+- Para la estimacion de pose se usan las siguientes funciones de mediapipe
+```python
+Holistic()
+process()
+draw_landmarks()
+```
+
+- Los puntos de la estimacion de pose se guardan en:
+```python
+lmList
+```
+
+- Con los puntos de la estimacion de pose se calculan los angulos y se hace el String que sera enviado por comunicacion Serial
+```python
+data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' + str(bicepL) + 'e' + str(bicepD)
+```
+____
+
+## Codigo en Arduino
+La unica libreria que se agrego fue la sigiuente:
+
+```c++
+#include <Servo.h>
+```
+
+El codigo revisa si existen datos en la comunicacion serial y cuando llegan los datos son de la siguiente forma:
+
+```c++
+'a' + "Angulo de la cabeza" + 'b' + "Brazo izquierdo" + 'c' + "Brazo derecho" + 'd' + "Bicep izquierdo" + 'e' + "Bicep derecho"
+```
+
+Por ejemplo:
+
+```c++
+a90b30c30d170e170
+```
+
+El preograma realiza la siguientes aperaciones:
+- Graudar el String en la variable "datos"
+- Ubicar la posicion de la las letras a, b, c, d, e y ubicacion del ultimo caracter
+- Obtener el subString donde se encuantra el valor de los angulos
+- Convertir los angulos de String a Entero
+- Enviar el angulo a los servomotores
+
+A lo largo del codigod se usaron las siguientes funciones:
+
+```c++
+readString() // Leer daots seriales
+indexOf()    // Posicion de un caracter esoecificado
+substring()  // Obtener un subString
+toInt()      // Convertir String a Entero
+write()      // Enviar posicion de servomotor
+```
 ____
 
 ## Evidencias
