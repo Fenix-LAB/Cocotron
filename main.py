@@ -250,11 +250,14 @@ class Work(QThread):
                             brazoD = int(self.brazoDDet(lmList))
                             bicepL = int(self.bicepIDet(lmList))
                             bicepD = int(self.bicepDDet(lmList))
+                            piernaL = int(self.piernaLDet(lmList))
+                            piernaD = int(self.piernaDDet(lmList))
 
                             # Se crea el String que sera enviado por comunicacion Serial
-                            data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' + str(bicepL) + 'e' + str(bicepD)
+                            data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
+                                   str(bicepL) + 'e' + str(bicepD) + 'f' + str(piernaL) + 'g' + str(piernaD)
                             if s == 20:
-                                #print(data)
+                                print(data)
                                 self.signalData.emit(data)   # Se envia el String a la variable señal
                                 s = 0
 
@@ -322,6 +325,28 @@ class Work(QThread):
         BDx3b = lmList[14][1]
         BDy3b = lmList[14][2]
         angle = self.angleVectors(BDx1b, BDy1b, BDx2b, BDy2b, BDx3b, BDy3b)
+        return angle
+
+    # Calculo del angulo de la pierna izquierda
+    def piernaLDet(self, lmList):
+        PIx1 = lmList[25][1]
+        PIy1 = lmList[25][2]
+        PIx2 = lmList[23][1]
+        PIy2 = lmList[23][2]
+        PIx3 = lmList[24][1]
+        PIy3 = lmList[24][2]
+        angle = self.angleVectors(PIx1, PIy1, PIx2, PIy2, PIx3, PIy3)
+        return angle
+
+    # Calculo del angulo de la pierna derecha
+    def piernaDDet(self, lmList):
+        PDx1 = lmList[23][1]
+        PDy1 = lmList[23][2]
+        PDx2 = lmList[24][1]
+        PDy2 = lmList[24][2]
+        PDx3 = lmList[26][1]
+        PDy3 = lmList[26][2]
+        angle = self.angleVectors(PDx1, PDy1, PDx2, PDy2, PDx3, PDy3)
         return angle
 
     # Funcion para calcular el angulo de los vectores
