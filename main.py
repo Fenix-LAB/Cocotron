@@ -182,7 +182,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 # Clase auxiliar, heredada de QThread para poder usar el multinucleo y tener un mejor video
 class Work(QThread):
     Imageupd = pyqtSignal(QImage)     # Variable de tipo señal para guardar la imagen mostrada
-    signalData = pyqtSignal(str)      # Variable de tipo señal para gairdar lso datos que se enviaran
+    signalData = pyqtSignal(str)      # Variable de tipo señal para guardar lso datos que se enviaran
 
     # Se define el contructor de la clase
     def __init__(self, parent=None, index=0):  # Por default se inicia en el nucleo 0

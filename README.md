@@ -9,13 +9,13 @@ ____
 [Miembros del Equipo](#miembros-del-equipo)  
 [Leyenda "El Charro Negro"](#leyenda-el-charro-negro)  
 [Desarrollo de la aplicacion](#desarrollo-de-la-aplicacion)  
-[Codigo en Arduino](#codigo-en-arduino)
+[Codigo en Arduino](#codigo-en-arduino)      
 [Evidencias](#evidencias)  
 <a name="headers"/>
 ____
 
 ## Overview
-Se desarrollo un aplicacion de escritorio en Python, que usa la camara para estimar la pose de la persona que esta siendo grabada, 
+Se desarrollo una aplicacion de escritorio en Python, que usa la camara para estimar la pose de la persona que esta siendo grabada, 
 los datos de la estimacion son procesados y enviados a un microcontrolador para mover los servomotores del animatronico, de esta forma se logra que el robot 
 imite los movimientos de una persona.
 ____
@@ -72,7 +72,6 @@ ____
 La aplicacion fue desarrollada en Python con los siguientes modulos:
 
 ```python
-import numpy
 from PyQt5.QtSerialPort import QSerialPort, QSerialPortInfo
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -82,7 +81,7 @@ import imutils
 from scipy.spatial import distance
 ```
 #### PyQt5
-Este modulo es una clase que nos permite crar interfaces graficas, tiene una coleccion de metodos y eventos para la realizacion de la aplicacion.
+Este modulo es una clase que nos permite crear interfaces graficas, tiene una coleccion de metodos y eventos para la realizacion de la aplicacion.
 Este modulo tambien incluye submodulos muy importantes, como el QtSerialPort para la comunicacion serial con el microcontrolador, o QThread para usar el multihilo del procesador.
 
 #### MediaPipe
@@ -94,8 +93,11 @@ Modulo muy popular de Computer Vision que permite usar algoritmos de Machine Lea
 Fue utilizado para procesar el video.
 
 ### Clases de la aplicacion
+La aplicacion consta de dos clases, la primera es la clase de la ventana donde se encuentran los metodos de los botones, de mostrar la imagen y enviar los datos de forma Serial.
+En la otra clase se realiza el procesamiento de las imagenes para estimar la pose de las personas, en esta clase tambien se calculan
+los angulos de los movimientos de las personas, esta es la informacion que se envia por comunicacion Serial.
 #### Clase MyApp()
-Para la clase de ventana se crearon los siguientes metodos:
+Para la clase de la ventana se crearon los siguientes metodos:
 ```python
 mover_menu(self): 
 control_btn_cerrar(self):
@@ -116,7 +118,7 @@ detection_data(self, data):
 ```
 
 #### Clase Work()
-En la clase de Work se hizo heredandola de QThread para usar el multinucleo del procesador
+En la clase de Work se hizo heredandola de la clase QThread para usar el multinucleo del procesador
 ```python
 class Work(QThread):
 ```
@@ -151,40 +153,42 @@ lmList
 
 - Con los puntos de la estimacion de pose se calculan los angulos y se hace el String que sera enviado por comunicacion Serial
 ```python
-data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' + str(bicepL) + 'e' + str(bicepD)
+data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
+                        str(bicepL) + 'e' + str(bicepD) + 'f' + str(piernaL) + 'g' + str(piernaD)
 ```
 ____
 
 ## Codigo en Arduino
-La unica libreria que se agrego fue la sigiuente:
+La unica libreria que se agrego fue la siguiente:
 
 ```c++
 #include <Servo.h>
 ```
 
-El codigo revisa si existen datos en la comunicacion serial y cuando llegan los datos son de la siguiente forma:
+El codigo revisa si existen datos en el puerto serial y cuando llegan los datos los guarda en una variable de tipo String,
+los datos que se reciben son de la siguiente forma:
 
 ```c++
-'a' + "Angulo de la cabeza" + 'b' + "Brazo izquierdo" + 'c' + "Brazo derecho" + 'd' + "Bicep izquierdo" + 'e' + "Bicep derecho"
+'a' + "Angulo de la cabeza" + 'b' + "Brazo izquierdo" + 'c' + "Brazo derecho" + 'd' + "Bicep izquierdo" + 'e' + "Bicep derecho" + 'f' + "Pierna izquierda" + 'g' + "Pierna derecha"
 ```
 
 Por ejemplo:
 
 ```c++
-a90b30c30d170e170
+a90b30c30d170e170f90g90
 ```
 
-El preograma realiza la siguientes aperaciones:
-- Graudar el String en la variable "datos"
+El programa realiza las siguientes aperaciones:
+- Guardar el String en la variable "datos"
 - Ubicar la posicion de la las letras a, b, c, d, e y ubicacion del ultimo caracter
-- Obtener el subString donde se encuantra el valor de los angulos
+- Obtener el subString donde se encuentra el valor de los angulos
 - Convertir los angulos de String a Entero
 - Enviar el angulo a los servomotores
 
-A lo largo del codigod se usaron las siguientes funciones:
+A lo largo del codigo se usaron las siguientes funciones:
 
 ```c++
-readString() // Leer daots seriales
+readString() // Leer datos seriales
 indexOf()    // Posicion de un caracter esoecificado
 substring()  // Obtener un subString
 toInt()      // Convertir String a Entero

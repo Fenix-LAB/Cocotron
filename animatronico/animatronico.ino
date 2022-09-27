@@ -1,5 +1,5 @@
 // Se incluye la libreria de servo
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 // Declaracion de variables
 int letraB, letraC, letraD, letraE, letraF, letraG, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD, NservoPiernaL, NservoPiernaD;
@@ -12,13 +12,13 @@ void setup() {
   // Se inicia la comunicacion Serial
   Serial.begin(9600);          
   // Se definen los pines de los servomotores
-  servoMotorCabeza.attach(3);
-  servoMotorBrazoL.attach(5);
-  servoMotorBrazoD.attach(6);
-  servoMotorBicepL.attach(9);
-  servoMotorBicepD.attach(11);
-  servoMotorPiernaL.attach(12);
-  servoMotorPiernaD.attach(13);
+  servoMotorCabeza.attach(23);
+  servoMotorBrazoL.attach(22);
+  servoMotorBrazoD.attach(1);
+  servoMotorBicepL.attach(3);
+  servoMotorBicepD.attach(21);
+  servoMotorPiernaL.attach(19);
+  servoMotorPiernaD.attach(18);
 }
 void loop() {
   // Se estara validadndo si existen datos seriales para leer
