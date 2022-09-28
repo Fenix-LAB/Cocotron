@@ -204,8 +204,18 @@ ____
 > Diseño de la interfaz grafica en Qt Designer.
 
 ![animatronico Arduino 1 8 19 21_09_2022 12_54_38 p  m](https://user-images.githubusercontent.com/85959332/191576390-45c51f22-9c93-4193-bac4-c9d490b6d620.png)
-> Trabajando en el codigo para un Arduino UNO
+> Trabajando en el codigo para un Arduino UNO.
 
 ![servo](https://user-images.githubusercontent.com/85959332/191537964-e1dc9e72-e472-43aa-aa1d-9807bcfc993b.jpg)
-> Realizando pruebas con un servomotor
+> Realizando pruebas con un servomotor.
+
+![1](https://user-images.githubusercontent.com/85959332/192871630-278fd840-e202-4db0-9ffd-44ac744cbe11.jpg)
+> Primeras pruebas de los servomotores y la aplicacion.
+
+![2](https://user-images.githubusercontent.com/85959332/192871657-458ce2be-c3ce-4214-8897-980473b7720c.jpg)
+> Conexion de 7 servomotores.
+
+![3](https://user-images.githubusercontent.com/85959332/192871672-6e3612b2-6de5-44b3-8356-f9b6e7df443d.jpg)
+> Test de la aplicacion en conjunto con los servomotores.
+
 
