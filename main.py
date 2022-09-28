@@ -257,7 +257,7 @@ class Work(QThread):
                             data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
                                    str(bicepL) + 'e' + str(bicepD) + 'f' + str(piernaL) + 'g' + str(piernaD)
                             if s == 20:
-                                print(data)
+                                #print(data)
                                 self.signalData.emit(data)   # Se envia el String a la variable señal
                                 s = 0
 

@@ -2,7 +2,7 @@
 #include <ESP32Servo.h>
 
 // Declaracion de variables
-int letraB, letraC, letraD, letraE, letraF, letraG, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD, NservoPiernaL, NservoPiernaD;
+int letraA, letraB, letraC, letraD, letraE, letraF, letraG, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD, NservoPiernaL, NservoPiernaD;
 String datos, servoCabeza, servoBrazoL, servoBrazoD, servoBicepL, servoBicepD, servoPiernaL, servoPiernaD;
 
 // Objeto de la clase Servo para cada servomotor
@@ -14,8 +14,8 @@ void setup() {
   // Se definen los pines de los servomotores
   servoMotorCabeza.attach(23);
   servoMotorBrazoL.attach(22);
-  servoMotorBrazoD.attach(1);
-  servoMotorBicepL.attach(3);
+  servoMotorBrazoD.attach(13);
+  servoMotorBicepL.attach(12);
   servoMotorBicepD.attach(21);
   servoMotorPiernaL.attach(19);
   servoMotorPiernaD.attach(18);
@@ -26,6 +26,7 @@ void loop() {
     // Los datos se guardan en la variable datos
     datos = Serial.readString();
     // Se obtiene la ubicacion de las letras que vienen en los datos
+    letraA = datos.indexOf('a');
     letraB = datos.indexOf('b');
     letraC = datos.indexOf('c');
     letraD = datos.indexOf('d');
@@ -35,7 +36,7 @@ void loop() {
     finalStr = datos.length();   // Longitud de los datos para conocer la ubicacion del ultimo dato
 
     // Se obtienen los subdatos apartir de la ubicacion de las letras
-    servoCabeza = datos.substring(1, letraB);
+    servoCabeza = datos.substring(letraA + 1, letraB);
     servoBrazoL = datos.substring(letraB + 1, letraC);
     servoBrazoD = datos.substring(letraC + 1, letraD);
     servoBicepL = datos.substring(letraD + 1, letraE);
