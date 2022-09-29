@@ -162,7 +162,7 @@ ____
 La unica libreria que se agrego fue la siguiente:
 
 ```c++
-#include <Servo.h>
+#include <ESP32Servo.h>
 ```
 
 El codigo revisa si existen datos en el puerto serial y cuando llegan los datos los guarda en una variable de tipo String,

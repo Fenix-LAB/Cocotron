@@ -18,6 +18,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Usamos la funcion QPoint() para guardar la posicion del mouse
         self.click_position = QPoint()
+        self.btn_menu.clicked.connect(self.mover_menu)
 
         # Se configura la ventana asociando los eventos con metodos
         self.btn_normal.hide()
@@ -27,7 +28,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_max.clicked.connect(self.control_btn_maximizar)
         self.btn_iniciar.clicked.connect(self.control_btn_iniciar)
         self.btn_detener.clicked.connect(self.control_btn_detener)
-        self.btn_menu.clicked.connect(self.mover_menu)
 
         # Se elimina la barra de titulo por default
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
@@ -210,16 +210,16 @@ class Work(QThread):
                     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)  # Se cambia el formatod de BGR a RGB
                     results = holistic.process(frame_rgb)
                     # Mano izquieda
-                    self.mp_drawing.draw_landmarks(                     # Se estima la pose de la mano izquierda
-                        frame, results.left_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
-                        self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
-                        self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
+                    #self.mp_drawing.draw_landmarks(                     # Se estima la pose de la mano izquierda
+                        #frame, results.left_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
+                        #self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
+                        #self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
 
                     # Mano derecha
-                    self.mp_drawing.draw_landmarks(                      # Se estima la pose de la mano derecha
-                        frame, results.right_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
-                        self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
-                        self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
+                    #self.mp_drawing.draw_landmarks(                      # Se estima la pose de la mano derecha
+                        #frame, results.right_hand_landmarks, self.mp_holistic.HAND_CONNECTIONS,
+                        #self.mp_drawing.DrawingSpec(color=(255, 140, 0), thickness=2, circle_radius=1),
+                        #self.mp_drawing.DrawingSpec(color=(255, 255, 0), thickness=2))
 
                     # Postura
                     self.mp_drawing.draw_landmarks(                      # Se estima la pose del cuerpo completo
