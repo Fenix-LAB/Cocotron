@@ -209,9 +209,6 @@ ____
 ![servo](https://user-images.githubusercontent.com/85959332/191537964-e1dc9e72-e472-43aa-aa1d-9807bcfc993b.jpg)
 > Realizando pruebas con un servomotor.
 
-![1](https://user-images.githubusercontent.com/85959332/192871630-278fd840-e202-4db0-9ffd-44ac744cbe11.jpg)
-> Primeras pruebas de los servomotores y la aplicacion.
-
 ![2](https://user-images.githubusercontent.com/85959332/192871657-458ce2be-c3ce-4214-8897-980473b7720c.jpg)
 > Conexion de 7 servomotores.
 
