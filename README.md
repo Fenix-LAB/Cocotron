@@ -218,6 +218,9 @@ ____
 ![evidencia_solid](https://user-images.githubusercontent.com/85959332/193677943-4c82d077-c8ce-4e09-bfc3-e40a925389b7.jpg)
 > Trabajando en las piezas del animatronico.
 
+![Solid_asm](https://user-images.githubusercontent.com/85959332/194570203-3082167e-805e-49f6-a641-6a03a174169e.jpg)
+>  Ensamble en SolidWorks
+
 ![3d2](https://user-images.githubusercontent.com/85959332/194435481-0e98be57-5192-42f7-a49b-c350478e4ab0.jpg)
 > Impresion de piezas en impresora 3D
 
