@@ -246,8 +246,8 @@ class Work(QThread):
                         if lmList:
                             #Se obtiene los angulos de algunos movimientos del cuerpo
                             head = int(self.cabezaDet(lmList))
-                            brazoL = int(self.brazoLDet(lmList))
-                            brazoD = int(self.brazoDDet(lmList))
+                            brazoL = int(self.brazoLDet(lmList)) - 30
+                            brazoD = int(self.brazoDDet(lmList)) - 30
                             bicepL = int(self.bicepIDet(lmList))
                             bicepD = int(self.bicepDDet(lmList))
                             piernaL = int(self.piernaLDet(lmList))
@@ -360,9 +360,9 @@ class Work(QThread):
     # Funcion para determinar la ddireccion de la cabeza
     def headDirection(self, LI, LD):
         if LI > LD + 20:
-            return 0 #Lado derecho
+            return 150 #Lado derecho
         elif LD > LI + 20:
-            return 180 #Lado izquierdo
+            return 30 #Lado izquierdo
         else:
             return 90 #Centro
 

@@ -1,8 +1,11 @@
 // Se incluye la libreria de servo
 #include <ESP32Servo.h>
 
+int reverse(int);
+
 // Declaracion de variables
 int letraA, letraB, letraC, letraD, letraE, letraF, letraG, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD, NservoPiernaL, NservoPiernaD;
+int servoBL, servoBBL, servoPL;
 String datos, servoCabeza, servoBrazoL, servoBrazoD, servoBicepL, servoBicepD, servoPiernaL, servoPiernaD;
 
 // Objeto de la clase Servo para cada servomotor
@@ -10,7 +13,7 @@ Servo servoMotorCabeza, servoMotorBrazoL, servoMotorBrazoD, servoMotorBicepL, se
 
 void setup() {
   // Se inicia la comunicacion Serial
-  Serial.begin(9600);          
+  Serial.begin(115200);          
   // Se definen los pines de los servomotores
   servoMotorCabeza.attach(23);
   servoMotorBrazoL.attach(22);
@@ -52,14 +55,25 @@ void loop() {
     NservoBicepD = servoBicepD.toInt();
     NservoPiernaL = servoPiernaL.toInt();
     NservoPiernaD  = servoPiernaD.toInt();
+
+    //Modificaciones
+    servoBL = reverse(NservoBrazoL); 
+    servoBBL = reverse(NservoBicepL);
+    servoPL = reverse(NservoPiernaL);
+    //Serial.println(servoBL);
     
     // Los datos enteros son los angulos y estos se envian a los servomotores
     servoMotorCabeza.write(NservoCabeza);
-    servoMotorBrazoL.write(NservoBrazoL);
+    servoMotorBrazoL.write(servoBL);
     servoMotorBrazoD.write(NservoBrazoD);
-    servoMotorBicepL.write(NservoBicepL);
+    servoMotorBicepL.write(servoBBL);
     servoMotorBicepD.write(NservoBicepD);
-    servoMotorPiernaL.write(NservoPiernaL);
+    servoMotorPiernaL.write(servoPL);
     servoMotorPiernaD.write(NservoPiernaD);
   }
+}
+
+int reverse(int num){
+  int numReverse = map(num, 30, 160, 180, 0);
+  return numReverse;
 }
