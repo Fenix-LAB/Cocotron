@@ -256,7 +256,7 @@ class Work(QThread):
                             # Se crea el String que sera enviado por comunicacion Serial
                             data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
                                    str(bicepL) + 'e' + str(bicepD) + 'f' + str(piernaL) + 'g' + str(piernaD)
-                            if s == 20:
+                            if s == 15:
                                 #print(data)
                                 self.signalData.emit(data)   # Se envia el String a la variable señal
                                 s = 0

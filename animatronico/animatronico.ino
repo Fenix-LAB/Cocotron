@@ -2,10 +2,11 @@
 #include <ESP32Servo.h>
 
 int reverse(int);
+int limit(int);
 
 // Declaracion de variables
 int letraA, letraB, letraC, letraD, letraE, letraF, letraG, finalStr, NservoCabeza, NservoBrazoL, NservoBrazoD, NservoBicepL, NservoBicepD, NservoPiernaL, NservoPiernaD;
-int servoBL, servoBBL, servoPL;
+int servoBL, servoBBL, servoPL, SMC, SMBL, SMBD, SMBBL, SMBBD, SMPL, SMPD;
 String datos, servoCabeza, servoBrazoL, servoBrazoD, servoBicepL, servoBicepD, servoPiernaL, servoPiernaD;
 
 // Objeto de la clase Servo para cada servomotor
@@ -54,26 +55,50 @@ void loop() {
     NservoBicepL = servoBicepL.toInt();
     NservoBicepD = servoBicepD.toInt();
     NservoPiernaL = servoPiernaL.toInt();
-    NservoPiernaD  = servoPiernaD.toInt();
+    NservoPiernaD = servoPiernaD.toInt();
+
+    //Acotando valores
+    SMC = limit(NservoCabeza);
+    SMBL = limit(NservoBrazoL);
+    SMBD = limit(NservoBrazoD);
+    SMBBL = limit(NservoBicepL);
+    SMBBD = limit(NservoBicepD);
+    SMPL = limit(NservoPiernaL);
+    SMPD = limit(NservoPiernaL);
 
     //Modificaciones
-    servoBL = reverse(NservoBrazoL); 
-    servoBBL = reverse(NservoBicepL);
-    servoPL = reverse(NservoPiernaL);
+    servoBL = reverse(SMBL); 
+    servoBBL = reverse(SMBBL);
+    servoPL = reverse(SMPL);
+    
     //Serial.println(servoBL);
     
     // Los datos enteros son los angulos y estos se envian a los servomotores
-    servoMotorCabeza.write(NservoCabeza);
+    servoMotorCabeza.write(SMC);
     servoMotorBrazoL.write(servoBL);
-    servoMotorBrazoD.write(NservoBrazoD);
+    servoMotorBrazoD.write(SMBD);
     servoMotorBicepL.write(servoBBL);
-    servoMotorBicepD.write(NservoBicepD);
+    servoMotorBicepD.write(SMBBD);
     servoMotorPiernaL.write(servoPL);
-    servoMotorPiernaD.write(NservoPiernaD);
+    servoMotorPiernaD.write(SMPD);
   }
 }
 
 int reverse(int num){
-  int numReverse = map(num, 30, 160, 180, 0);
+  int numReverse = map(num, 0, 180, 180, 0);
   return numReverse;
+}
+
+int limit(int num){
+  int numLimit;
+  if(num > 0 && num < 180){
+    numLimit = num;
+  }
+  if(num < 0){
+    numLimit = 0;
+  }
+  if(num > 180){
+    numLimit = 180;
+  }
+  return numLimit;
 }
