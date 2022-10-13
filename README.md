@@ -183,6 +183,8 @@ El programa realiza las siguientes aperaciones:
 - Ubicar la posicion de la las letras a, b, c, d, e y ubicacion del ultimo caracter
 - Obtener el subString donde se encuentra el valor de los angulos
 - Convertir los angulos de String a Entero
+- Los angulos se limitan entre 0 y 180
+- Angunos angulos son cambiados de 0-180 a 180-0
 - Enviar el angulo a los servomotores
 
 A lo largo del codigo se usaron las siguientes funciones:
