@@ -228,3 +228,10 @@ ____
 
 ![3d1](https://user-images.githubusercontent.com/85959332/194435488-efdf3443-6b8c-4346-a008-12ebdedf898c.jpg)
 > Impresion de piezas en impresora 3D
+
+![escenario](https://user-images.githubusercontent.com/85959332/196522230-40f8af58-522d-4cf8-8b10-e739d2292828.jpg)
+> Realizando el escenario
+
+![armado](https://user-images.githubusercontent.com/85959332/196522257-9f253250-1d10-4195-aa34-67cf0b46ecac.jpg)
+> Armando el robot
+
