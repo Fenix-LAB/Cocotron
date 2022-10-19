@@ -7,7 +7,8 @@ ____
 
 [Overview](#overview)  
 [Miembros del Equipo](#miembros-del-equipo)  
-[Leyenda "El Charro Negro"](#leyenda-el-charro-negro)  
+[Leyenda "El Charro Negro"](#leyenda-el-charro-negro)          
+[Antecedentes](#antecedentes)     
 [Desarrollo de la aplicacion](#desarrollo-de-la-aplicacion)  
 [Codigo en Arduino](#codigo-en-arduino)      
 [Evidencias](#evidencias)  
@@ -66,6 +67,21 @@ _—Veo que tu bestia te es fiel, por eso ha de ser maldita igual que tú y cond
 _Desde entonces, aquel hombre fue condenado a sufrir incontables tormentos en el infierno y a salir de ahí solo para cobrar a quienes tienen deudas pendientes con Lucifer. Esto con la esperanza de que una noche, algún viajero, traicionado por su avaricia, tomé su lugar. Solo así, el Charro Negro y su caballo podrán descansar en paz._
 
 Lyenda tomada de: Cisneros, S. (2022, January 28). La leyenda del Charro Negro. México Desconocido. Retrieved September 20, 2022, de [La Leyenda del Charrro Negro](https://www.mexicodesconocido.com.mx/la-leyenda-del-charro-negro.html)
+____
+
+## Antecedentes
+
+En México, la leyenda del charro negro tiene dos historias distintas según la zona donde se esté relatando, estas áreas se encuentran en el área del centro y sureste de México ( Puebla, CDMX , Veracruz, Hidalgo, etc.) y la otra en la zona oeste y suroeste de México ( Guadalajara, Aguascalientes, etc.), pero nosotros nos enfocamos en la versión de nuestro estado.
+
+Los antecedentes de esta leyenda no son certeros, pero se piensa que se originó en alguno de los estados de Puebla, Tlaxcala, Veracruz e Hidalgo. 
+
+Según algunos, la leyenda surge entre el **sincretismo** en el año 1920 entre creencias indígenas y europeas. El Charro Negro representa el lado oscuro del alma humana, una historia que advierte sobre la cegadora codicia. Este personaje fue transmutado en deidades oscuras por etnias como la **Wixárika**. Dentro de las deidades Huicholes, el que más resalta dentro de estas deidades es el dios Tamatsi Teiwari Yuawi, que en español es llamado "Nuestro Hermano Mayor el Mestizo Azul Oscuro". El dios "Mestizo Azul", dentro de la cultura indígena, específicamente dentro de la cultura Huichol, representa el estereotipo del colonizador que llega a amenazar su cultura. Este dios "Mestizo Azul" es más poderoso que los mismos dioses Huicholes, sin embargo, es déspota, cobrador y no conoce el perdón. El resultado del encuentro de estas dos culturas también une dos religiones; la mesoamericana (específicamente la Huichol) y de España, el resultado será una cultura popular Mestiza, que crea una figura del folclore mexicano, es decir el "Charro Negro".
+
+Desde una perspectiva mixteca, se cuenta que es el "patrón del lugar" habita en la cima del monte, cuidador de la comarca, este individuo no tiene aspectos indígenas, al contrario, nos habla de características de los colonizadores, es decir un hombre blanco, alto y montado a caballo. Los Mixtecos hablan de lo peligroso que puede ser encontrarlo, por eso se tiene la creencia de cargar ajo, para lograr ahuyentarlo. Este "señor del cerro" castiga a los que causan destrozos en los bosques, custodia los tesoros y castiga a quienes cometen avaricia. Tal es la importancia del "Señor del Cerro" que los indígenas pedían permiso con ofrendas para poder obtener el permiso de trabajar en sus tierras. Las ofrendas constaban de cigarro, mezcal y comida.
+
+En la Sierra Norte de Puebla, San Martín de Caballero, es conocido en las ciudades como un santo al cuál se le pide dinero con la frase "San Martín de Caballero, dame tantito dinero" mientras se le ofrece alfalfa a su caballo. Mientras que en la cultura Mazatecos se convierte en un ser nocturno, en donde explican que no se trata de un santo. Se le conoce como el dueño de las tierras y de los montes. Sus características son de colonizadores, es de tez blanca y saluda en castellano. Algunas noches baja para visitar a sus animales y vigilar los tesoros enterrados. Los que desean obtener dinero de este ser, deben de ir en estado de indulgencia (abstinencia sexual) y llegan ofreciendo cacao o un guajolote. San Martín de Caballero, les da instrucciones, en las que se incluye, llevarse su caballo de la cola hasta la casa del solicitante y no decir nada en 4 años, si esta promesa se llega a romper entonces queda condena el alma del solicitante, muere al instante y San Martín de Caballero toma su cuerpo y alma para llevarlos a trabajar con él.
+
+Con la llegada del cristianismo a México, la dualidad también se propulsó con la figura de Dios y Lucifer, y en esta bifurcación cultural surgieron mitos y leyendas sobre la tentación perenne que es capaz de hacer perecer el alma.
 ____
 
 ## Desarrollo de la aplicacion
