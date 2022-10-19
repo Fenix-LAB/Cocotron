@@ -229,9 +229,17 @@ ____
 ![3d1](https://user-images.githubusercontent.com/85959332/194435488-efdf3443-6b8c-4346-a008-12ebdedf898c.jpg)
 > Impresion de piezas en impresora 3D
 
+![pint_hacienda](https://user-images.githubusercontent.com/85959332/196570927-60e31f16-139c-456d-ac3a-d1008c994777.jpg)
+> Trabajando en la hacienda
+
 ![escenario](https://user-images.githubusercontent.com/85959332/196522230-40f8af58-522d-4cf8-8b10-e739d2292828.jpg)
+> Realizando el escenario
+
+![trabajando](https://user-images.githubusercontent.com/85959332/196570949-a43fa0a4-ded0-404a-8d56-7df52fd57e62.jpg)
 > Realizando el escenario
 
 ![armado](https://user-images.githubusercontent.com/85959332/196522257-9f253250-1d10-4195-aa34-67cf0b46ecac.jpg)
 > Armando el robot
+
+
 
