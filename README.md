@@ -233,11 +233,8 @@ ____
 ![3](https://user-images.githubusercontent.com/85959332/192871672-6e3612b2-6de5-44b3-8356-f9b6e7df443d.jpg)
 > Test de la aplicacion en conjunto con los servomotores.
 
-![evidencia_solid](https://user-images.githubusercontent.com/85959332/193677943-4c82d077-c8ce-4e09-bfc3-e40a925389b7.jpg)
-> Trabajando en las piezas del animatronico.
-
 ![solidasm](https://user-images.githubusercontent.com/85959332/195206752-2db37341-a5a0-453f-9019-9d352307cc5b.jpg)
->  Ensamble en SolidWorks
+> Ensamble en SolidWorks
 
 ![3d2](https://user-images.githubusercontent.com/85959332/194435481-0e98be57-5192-42f7-a49b-c350478e4ab0.jpg)
 > Impresion de piezas en impresora 3D
