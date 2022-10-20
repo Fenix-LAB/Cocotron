@@ -254,5 +254,11 @@ ____
 ![armado](https://user-images.githubusercontent.com/85959332/196522257-9f253250-1d10-4195-aa34-67cf0b46ecac.jpg)
 > Armando el robot
 
+![charro](https://user-images.githubusercontent.com/85959332/197044820-6f5a504a-8049-486c-ac1b-23f43759e48b.jpg)
+> Charrito
+
+![charro_luz](https://user-images.githubusercontent.com/85959332/197044778-5d22ce42-a725-459c-8b2f-33dc207f98a7.jpg)
+> Charro con luz
+
 
 
