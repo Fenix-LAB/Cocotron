@@ -222,7 +222,7 @@ ____
 > Diseño de la interfaz grafica en Qt Designer.
 
 ![animatronico Arduino 1 8 19 21_09_2022 12_54_38 p  m](https://user-images.githubusercontent.com/85959332/191576390-45c51f22-9c93-4193-bac4-c9d490b6d620.png)
-> Trabajando en el codigo para un Arduino UNO.
+> Trabajando en el codigo en Arduino IDE.
 
 ![servo](https://user-images.githubusercontent.com/85959332/191537964-e1dc9e72-e472-43aa-aa1d-9807bcfc993b.jpg)
 > Realizando pruebas con un servomotor.
@@ -234,31 +234,34 @@ ____
 > Test de la aplicacion en conjunto con los servomotores.
 
 ![solidasm](https://user-images.githubusercontent.com/85959332/195206752-2db37341-a5a0-453f-9019-9d352307cc5b.jpg)
-> Ensamble en SolidWorks
+> Ensamble en SolidWorks.
 
 ![3d2](https://user-images.githubusercontent.com/85959332/194435481-0e98be57-5192-42f7-a49b-c350478e4ab0.jpg)
-> Impresion de piezas en impresora 3D
+> Impresion de piezas en impresora 3D.
 
 ![3d1](https://user-images.githubusercontent.com/85959332/194435488-efdf3443-6b8c-4346-a008-12ebdedf898c.jpg)
-> Impresion de piezas en impresora 3D
+> Impresion de piezas en impresora 3D.
 
 ![pint_hacienda](https://user-images.githubusercontent.com/85959332/196570927-60e31f16-139c-456d-ac3a-d1008c994777.jpg)
-> Trabajando en la hacienda
+> Trabajando en la hacienda.
 
 ![escenario](https://user-images.githubusercontent.com/85959332/196522230-40f8af58-522d-4cf8-8b10-e739d2292828.jpg)
-> Realizando el escenario
+> Realizando el escenario.
+
+![ad](https://user-images.githubusercontent.com/85959332/197199389-1f0db63a-043c-4f1c-9681-94a2521b81be.jpg)
+> Realizando el escenario.
 
 ![trabajando](https://user-images.githubusercontent.com/85959332/196570949-a43fa0a4-ded0-404a-8d56-7df52fd57e62.jpg)
-> Realizando el escenario
+> Realizando el escenario.
 
 ![armado](https://user-images.githubusercontent.com/85959332/196522257-9f253250-1d10-4195-aa34-67cf0b46ecac.jpg)
-> Armando el robot
+> Armando el robot.
 
 ![charro](https://user-images.githubusercontent.com/85959332/197044820-6f5a504a-8049-486c-ac1b-23f43759e48b.jpg)
-> Charrito
+> Charrito.
 
 ![charro_luz](https://user-images.githubusercontent.com/85959332/197044778-5d22ce42-a725-459c-8b2f-33dc207f98a7.jpg)
-> Charro con luz
+> Charro con luz.
 
 
 
