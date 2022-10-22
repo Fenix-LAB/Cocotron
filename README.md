@@ -1,6 +1,6 @@
 # El Charrito Electronico
 
-Aqui se presenta el repositorio del proyecto del animatronico para el Cocotron 2022, realizado por el Laboratorio de Innovacion BUAP-Intel 
+Aquí se presenta el repositorio del proyecto del animatrónico para el Cocotron 2022, realizado por el Laboratorio de innovación BUAP-Intel
 ____
 
 ## Contenido
@@ -16,13 +16,13 @@ ____
 ____
 
 ## Overview
-Se desarrollo una aplicacion de escritorio en Python, que usa la camara para estimar la pose de la persona que esta siendo grabada, 
-los datos de la estimacion son procesados y enviados a un microcontrolador para mover los servomotores del animatronico, de esta forma se logra que el robot 
+Se desarrollo una aplicación de escritorio en Python, que usa la cámara para estimar la pose de la persona que está siendo grabada, 
+los datos de la estimación son procesados y enviados a un microcontrolador para mover los servomotores del animatrónico, de esta forma se logra que el robot 
 imite los movimientos de una persona.
 ____
      
 ## Miembros del Equipo
-Miembos del Laboratorio de Innovacion Intel-BUAP
+Miembros del Laboratorio de Innovación Intel-BUAP
 
 |           Nombre              | Carrera         |  Semestre    |
 |------------------------------ | ----------------|---------------
@@ -84,7 +84,7 @@ En la Sierra Norte de Puebla, San Martín de Caballero, es conocido en las ciuda
 Con la llegada del cristianismo a México, la dualidad también se propulsó con la figura de Dios y Lucifer, y en esta bifurcación cultural surgieron mitos y leyendas sobre la tentación perenne que es capaz de hacer perecer el alma.
 ____
 
-## Desarrollo de la aplicacion
+## Desarrollo de la aplicación
 La aplicacion fue desarrollada en Python con los siguientes modulos:
 
 ```python
@@ -97,23 +97,24 @@ import imutils
 from scipy.spatial import distance
 ```
 #### PyQt5
-Este modulo es una clase que nos permite crear interfaces graficas, tiene una coleccion de metodos y eventos para la realizacion de la aplicacion.
-Este modulo tambien incluye submodulos muy importantes, como el QtSerialPort para la comunicacion serial con el microcontrolador, o QThread para usar el multihilo del procesador.
+Este módulo es una clase que nos permite crear interfaces gráficas, tiene una colección de métodos y eventos para la realización de la aplicación.
+Este módulo también incluye submódulos muy importantes, como el QtSerialPort para la comunicación serial con el microcontrolador, o QThread para usar el multihilo del procesador.
 
 #### MediaPipe
 MediaPipe ofrece soluciones de Machine Learning personalizables y multiplataforma para medios en vivo y de transmisión.
-Es el modulo encargado de estimar la pose de las personas.
+Es el módulo encargado de estimar la pose de las personas.
 
 #### OpenCV
-Modulo muy popular de Computer Vision que permite usar algoritmos de Machine Learning en videos o imagenes. 
+Módulo muy popular de Computer Vision que permite usar algoritmos de Machine Learning en videos o imágenes. 
 Fue utilizado para procesar el video.
 
 ### Clases de la aplicacion
-La aplicacion consta de dos clases, la primera es la clase de la ventana donde se encuentran los metodos de los botones, de mostrar la imagen y enviar los datos de forma Serial.
-En la otra clase se realiza el procesamiento de las imagenes para estimar la pose de las personas, en esta clase tambien se calculan
-los angulos de los movimientos de las personas, esta es la informacion que se envia por comunicacion Serial.
+La aplicación consta de dos clases, la primera es la clase de la ventana donde se encuentran los métodos de los botones, de mostrar la imagen y enviar los datos de forma Serial.
+En la otra clase se realiza el procesamiento de las imágenes para estimar la pose de las personas, en esta clase también se calculan
+los ángulos de los movimientos de las personas, esta es la información que se envía por comunicación Serial.
+
 #### Clase MyApp()
-Para la clase de la ventana se crearon los siguientes metodos:
+Para la clase de la ventana se crearon los siguientes métodos:
 ```python
 mover_menu(self): 
 control_btn_cerrar(self):
@@ -134,18 +135,18 @@ detection_data(self, data):
 ```
 
 #### Clase Work()
-En la clase de Work se hizo heredandola de la clase QThread para usar el multinucleo del procesador
+En la clase de Work se hizo heredándola de la clase QThread para usar el multinúcleo del procesador
 ```python
 class Work(QThread):
 ```
 
-En esta clase se definen dos variables qus son señales que despues seran usadas por la clase de la ventana
+En esta clase se definen dos variables que son señales que después serán usadas por la clase de la ventana
 ```python
 Imageupd = pyqtSignal(QImage)     # Variable de tipo señal para guardar la imagen mostrada
 signalData = pyqtSignal(str)      # Variable de tipo señal para gairdar lso datos que se enviaran
 ```
 
-En el metodo de Run se realiza el procesado del video, la estimacion de pose y el procesado de los angulos de las partes del cuerpo
+En el método de Run se realiza el procesado del video, la estimación de pose y el procesado de los ángulos de las partes del cuerpo
 
 - Para el procesado del video se usan las funciones de CV2 como:
 ```python
@@ -155,19 +156,19 @@ cvtColor()
 flip() 
 ```
 
-- Para la estimacion de pose se usan las siguientes funciones de mediapipe
+- Para la estimación de pose se usan las siguientes funciones de mediapipe
 ```python
 Holistic()
 process()
 draw_landmarks()
 ```
 
-- Los puntos de la estimacion de pose se guardan en:
+- Los puntos de la estimación de pose se guardan en:
 ```python
 lmList
 ```
 
-- Con los puntos de la estimacion de pose se calculan los angulos y se hace el String que sera enviado por comunicacion Serial
+- Con los puntos de la estimación de pose se calculan los ángulos y se hace el String que será enviado por comunicación Serial
 ```python
 data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
                         str(bicepL) + 'e' + str(bicepD) + 'f' + str(piernaL) + 'g' + str(piernaD)
@@ -175,13 +176,13 @@ data = 'a' + str(head) + 'b' + str(brazoL) + 'c' + str(brazoD) + 'd' +\
 ____
 
 ## Codigo en Arduino
-La unica libreria que se agrego fue la siguiente:
+La única librería que se agrego fue la siguiente:
 
 ```c++
 #include <ESP32Servo.h>
 ```
 
-El codigo revisa si existen datos en el puerto serial y cuando llegan los datos los guarda en una variable de tipo String,
+El código revisa si existen datos en el puerto serial y cuando llegan los datos los guarda en una variable de tipo String,
 los datos que se reciben son de la siguiente forma:
 
 ```c++
@@ -194,16 +195,16 @@ Por ejemplo:
 a90b30c30d170e170f90g90
 ```
 
-El programa realiza las siguientes aperaciones:
+El programa realiza las siguientes operaciones:
 - Guardar el String en la variable "datos"
-- Ubicar la posicion de la las letras a, b, c, d, e y ubicacion del ultimo caracter
-- Obtener el subString donde se encuentra el valor de los angulos
-- Convertir los angulos de String a Entero
-- Los angulos se limitan entre 0 y 180
-- Angunos angulos son cambiados de 0-180 a 180-0
-- Enviar el angulo a los servomotores
+- Ubicar la posición de las letras a, b, c, d, e y ubicación del último carácter
+- Obtener el subString donde se encuentra el valor de los ángulos
+- Convertir los ángulos de String a Entero
+- Los ángulos se limitan entre 0 y 180
+- Algunos ángulos son cambiados de 0-180 a 180-0
+- Enviar el ángulo a los servomotores
 
-A lo largo del codigo se usaron las siguientes funciones:
+A lo largo del código se usaron las siguientes funciones:
 
 ```c++
 readString() // Leer datos seriales
@@ -216,31 +217,31 @@ ____
 
 ## Evidencias
 ![Evidencia1](https://user-images.githubusercontent.com/85959332/191079474-2e9e440d-6382-4ff6-ba26-5d29fe0b017b.jpg)
-> Trabajando en el Laboratorio de Innovacion de Intel, ubicado en el Edificio EMA7 salon 205.
+> Trabajando en el Laboratorio de innovación de Intel, ubicado en el Edificio EMA7 salón 205.
 
 ![Qt Designer 19_09_2022 12_50_47 p  m](https://user-images.githubusercontent.com/85959332/191081543-f181fedd-51fe-49eb-ba49-695e9d3d2f43.png)
-> Diseño de la interfaz grafica en Qt Designer.
+> Diseño de la interfaz gráfica en Qt Designer.
 
 ![animatronico Arduino 1 8 19 21_09_2022 12_54_38 p  m](https://user-images.githubusercontent.com/85959332/191576390-45c51f22-9c93-4193-bac4-c9d490b6d620.png)
-> Trabajando en el codigo en Arduino IDE.
+> Trabajando en el código en Arduino IDE.
 
 ![servo](https://user-images.githubusercontent.com/85959332/191537964-e1dc9e72-e472-43aa-aa1d-9807bcfc993b.jpg)
 > Realizando pruebas con un servomotor.
 
 ![2](https://user-images.githubusercontent.com/85959332/192871657-458ce2be-c3ce-4214-8897-980473b7720c.jpg)
-> Conexion de 7 servomotores.
+> Conexión de 7 servomotores.
 
 ![3](https://user-images.githubusercontent.com/85959332/192871672-6e3612b2-6de5-44b3-8356-f9b6e7df443d.jpg)
-> Test de la aplicacion en conjunto con los servomotores.
+> Test de la aplicación en conjunto con los servomotores.
 
 ![solidasm](https://user-images.githubusercontent.com/85959332/195206752-2db37341-a5a0-453f-9019-9d352307cc5b.jpg)
 > Ensamble en SolidWorks.
 
 ![3d2](https://user-images.githubusercontent.com/85959332/194435481-0e98be57-5192-42f7-a49b-c350478e4ab0.jpg)
-> Impresion de piezas en impresora 3D.
+> impresión de piezas en impresora 3D.
 
 ![3d1](https://user-images.githubusercontent.com/85959332/194435488-efdf3443-6b8c-4346-a008-12ebdedf898c.jpg)
-> Impresion de piezas en impresora 3D.
+> impresión de piezas en impresora 3D.
 
 ![pint_hacienda](https://user-images.githubusercontent.com/85959332/196570927-60e31f16-139c-456d-ac3a-d1008c994777.jpg)
 > Trabajando en la hacienda.
