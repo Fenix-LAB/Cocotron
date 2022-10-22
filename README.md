@@ -1,4 +1,4 @@
-# El Charrito Electronico
+# El Charrito Electrónico
 
 Aquí se presenta el repositorio del proyecto del animatrónico para el Cocotron 2022, realizado por el Laboratorio de innovación BUAP-Intel
 ____
