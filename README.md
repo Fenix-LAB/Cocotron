@@ -264,5 +264,7 @@ ____
 ![charro_luz](https://user-images.githubusercontent.com/85959332/197044778-5d22ce42-a725-459c-8b2f-33dc207f98a7.jpg)
 > Charro con luz.
 
+![win](https://user-images.githubusercontent.com/85959332/197785812-b0f1a141-5f71-40c6-a1ae-225dcdeaca16.jpg)
+> GANADORES DEL COCOTRON 2022!!!
 
 
